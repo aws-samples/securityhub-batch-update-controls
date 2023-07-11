@@ -37,7 +37,10 @@ In addition to the preceding APIs, you should also add permission to call BatchG
             "Action": [
                 "securityhub:ListStandardsControlAssociations",
                 "securityhub:BatchUpdateStandardsControlAssociations",
-                "securityhub:DescribeStandards",
+                "securityhub:BatchGet*",
+                "securityhub:Get*",
+                "securityhub:List*",
+                "securityhub:Describe*"
             ],
             "Resource": "*",
             "Effect": "Allow"
@@ -74,26 +77,26 @@ If you do not have a common role that includes at least the above permissions yo
         * Install Python https://www.python.org/downloads/windows/
         * Open command prompt:
             * pip install boto3
-        * git clone https://github.com/awslabs/aws-securityhub-multiaccount-scripts.git
-        * cd aws-securityhub-multiaccount-scripts/securityhub-change-control
+        * git clone https://github.com/aws-samples/securityhubcontrols-multiaccount-scripts.git
+        * cd securityhubcontrols-multiaccount-scripts/src
     * Mac:
         * Install Python https://www.python.org/downloads/mac-osx/
         * Open command prompt:
             * pip install boto3
-        * git clone https://github.com/awslabs/aws-securityhub-multiaccount-scripts.git
-        * cd aws-securityhub-multiaccount-scripts/securityhub-change-control
+        * git clone https://github.com/aws-samples/securityhubcontrols-multiaccount-scripts.git
+        * cd securityhubcontrols-multiaccount-scripts/src
     * Linux:
         * sudo apt-get -y install install python2-pip python2 git
         * sudo pip install boto3
-        * git clone https://github.com/awslabs/aws-securityhub-multiaccount-scripts.git
-        * cd aws-securityhub-multiaccount-scripts/securityhub-change-control
+        * git clone https://github.com/aws-samples/securityhubcontrols-multiaccount-scripts.git
+        * cd securityhubcontrols-multiaccount-scripts/src
         
         Or
         
         * sudo yum install git python
         * sudo pip install boto3
-        * git clone https://github.com/awslabs/aws-securityhub-multiaccount-scripts.git
-        * cd aws-securityhub-multiaccount-scripts/securityhub-change-control
+        * git clone https://github.com/aws-samples/securityhubcontrols-multiaccount-scripts.git
+        * cd securityhubcontrols-multiaccount-scripts/src
 
 ### 2. Execute Scripts
 #### 2a. Enable controls
