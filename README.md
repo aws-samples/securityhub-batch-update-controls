@@ -60,7 +60,7 @@ If you do not have a common role that includes at least the above permissions yo
     * RPM: sudo yum -y install python3-pip python3 git
     * sudo pip install boto3
 * Clone the Repository
-    * git clone https://github.com/awslabs/aws-securityhub-multiaccount-scripts.git
+    * git clone https://github.com/aws-samples/securityhub-multiaccount-scripts.git
     * cd aws-securityhub-multiaccount-scripts/securityhub-change-control
 * Copy the text file containing the account numbers to the instance using one of the methods below
     * S3 `s3 cp s3://bucket/key_name enable.txt .`
@@ -165,3 +165,6 @@ $ python3 disablecontrols.py --assume_role ManageSecurityHubcontrols --disable_r
 
 '''
 
+#### License Summary
+
+This sample code is made available under the MIT-0 license. See the LICENSE file.
