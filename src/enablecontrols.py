@@ -84,33 +84,11 @@ def control_state(securityhub_client):
     else:
 
         responcontrol = securityhub_client.list_security_control_definitions()
-        try:
-
-            for control in responcontrol['SecurityControlDefinitions']:
-                control_id = control['SecurityControlId']
-                #print(control['SecurityControlId'])
-                print("Enabling control for ID: {}".format(control_id))
-                resp = securityhub_client.batch_update_standards_control_associations(
-            StandardsControlAssociationUpdates=[
-                {
-                    'StandardsArn': SECURITY_STANDARD,
-                    'SecurityControlId': control_id,
-                    'AssociationStatus': 'ENABLED',
-                    'UpdatedReason': 'multiaccountscript'
-                },
-            ]
-        )
-            while responcontrol.get("NextToken"):
-        # time.sleep(3)
-
-                responcontrol = securityhub_client.list_security_control_definitions(
-                NextToken=responcontrol['NextToken']
-        )
-    
-                for control in responcontrol['SecurityControlDefinitions']:
-                    control_id = control['SecurityControlId']
-                    print("Enabling control for ID: {}".format(control_id))
-                    resbatch = securityhub_client.batch_update_standards_control_associations(
+        for control in responcontrol['SecurityControlDefinitions']:
+            control_id = control['SecurityControlId']
+            # print(control['SecurityControlId'])
+            print("Enabling control for ID: {}".format(control_id))
+            resp = securityhub_client.batch_update_standards_control_associations(
                 StandardsControlAssociationUpdates=[
                     {
                         'StandardsArn': SECURITY_STANDARD,
@@ -120,8 +98,31 @@ def control_state(securityhub_client):
                     },
                 ]
             )
+        while responcontrol.get("NextToken"):
+            # time.sleep(3)
+
+            responcontrol = securityhub_client.list_security_control_definitions(
+                NextToken=responcontrol['NextToken']
+            )
+
+            for control in responcontrol['SecurityControlDefinitions']:
+                control_id = control['SecurityControlId']
+                print("Enabling control for ID: {}".format(control_id))
+                resbatch = securityhub_client.batch_update_standards_control_associations(
+                    StandardsControlAssociationUpdates=[
+                        {
+                            'StandardsArn': SECURITY_STANDARD,
+                            'SecurityControlId': control_id,
+                            'AssociationStatus': 'ENABLED',
+                            'UpdatedReason': 'multiaccountscript'
+                        },
+                    ]
+                )
+
+
 
 if __name__ == '__main__':
+
 
     # Setup command line arguments
     parser = argparse.ArgumentParser(description='Enable control  security standard in Security Hub accounts')
@@ -207,7 +208,7 @@ if __name__ == '__main__':
                             control_state(securityhub_client)
 
 
-                print("Finished enabling control on account {} for region {}".format(account, aws_region))
+                        print("Finished enabling control on account {} for region {}".format(account, aws_region))
                 except ClientError as e:
                         print("Error enabling controls for  {} in  account {}".format(SECURITY_STANDARD, account))
                         failed_accounts.append({account: repr(e)})
