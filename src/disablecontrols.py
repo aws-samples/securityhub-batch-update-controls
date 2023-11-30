@@ -75,7 +75,7 @@ def control_state(securityhub_client):
                     {
                         'StandardsArn': SECURITY_STANDARD,
                         'SecurityControlId': control_id,
-                        'AssociationStatus': 'ENABLED',
+                        'AssociationStatus': 'DISABLED',
                         'UpdatedReason': 'multiaccountscript'
                     },
                 ]
